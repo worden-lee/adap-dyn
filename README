@@ -1,0 +1,9 @@
+adap-dyn library by Lee Worden
+Base classes for evolutionary ecology simulations.
+
+Requires VXL, Sundials, maybe MPI, though it may be possible to 
+compile without them.  to do: make these things truly optional.
+
+This used to be known as adap-dyn2 - there was another adap-dyn
+before that.  Some of that is in a CVS repository, but nobody
+needs it.
