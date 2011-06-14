@@ -46,7 +46,7 @@ OBJS = $(SOURCES:.cpp=.o) CVodeWithStoppingCondition.o \
 #OBJS = $(SOURCES:.cpp=.o) ../libexecstream/exec-stream.o
 THIS = GNUmakefile
 
-ARCHIVE = libadap-dyn2.a
+ARCHIVE = libadap-dyn.a
 
 default: $(ARCHIVE)
 
