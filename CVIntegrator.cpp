@@ -188,7 +188,7 @@ int CVIntegrator::check(const VectorAccess<double> *xp, realtype t0)
 	//cout << "check: " << t << " tired" << endl;
 // 	site->outputcontroller->
 // 	  logWithCommunity("(last event was %g)\n", lastEventWas); 
-	equil = false;
+	//equil = false;
 	tiredOfWaiting = true;
 	timeToSpeciate = true;
 	noChangeSince = t;

@@ -11,7 +11,7 @@ public:
   
   void integrateNonstop(double t1);
   // called by discrete implementation of integrate
-  void iterate_to(double t1, double eps, 
+  virtual void iterate_to(double t1, double eps, 
 		  double extinctionthreshold/*, double dtsav*/);
   virtual double invasionFunction(Index&);
   void integratePartially(double);

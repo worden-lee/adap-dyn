@@ -202,12 +202,12 @@ double bnldev(double pp, int n/*, long *idum*/)
 /*
   chooses a random number between 0 and nmax-1 given nmax
   */
-int rand_index(int nmax)
+unsigned int rand_index(unsigned int nmax)
 {
   // can it go wrong?
-  int ri;
+  unsigned int ri;
   do{
-    ri = (int)(nmax*unif_distn());
+    ri = (unsigned int)(nmax*unif_distn());
   } while (ri >= nmax);
   return ri;
 }

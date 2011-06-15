@@ -33,7 +33,7 @@ double bnldev(double p, int n);
 /*
   chooses a random number between 0 and nmax-1
 */
-int rand_index(int nmax); // not including nmax
+unsigned rand_index(unsigned nmax); // not including nmax
 
 #define generate_poisson_number(M) ((int)poidev(M))
 #define uniform_int(a,b)  ((a) + rand_index((b)-(a))) // not including b
