@@ -20,9 +20,10 @@ endif
 
 VNL=yes
 ifeq ($(VNL),yes)
-LOCALCFLAGS+=-DVNL -I../vxl/core -I../vxl/core/vnl -I../vxl/core/vnl/algo -I../vxl/vcl -I../vxl/lib
-#CFLAGS+=-DVNL -I../vxl-1.0-beta/vxl -I../vxl-1.0-beta/vxl/config.Linux2-gcc-2.95 -finline-functions
-LDFLAGS += -L../vxl/lib -lvnl_algo -lvnl -lvcl -lnetlib
+VXLDIR ?= ../vxl
+LOCALCFLAGS+=-DVNL -I$(VXLDIR)/core -I$(VXLDIR)/core/vnl -I$(VXLDIR)/core/vnl/algo -I$(VXLDIR)/vcl -I$(VXLDIR)/lib
+#CFLAGS+=-DVNL -I$(VXLDIR)-1.0-beta/vxl -I../vxl-1.0-beta/vxl/config.Linux2-gcc-2.95 -finline-functions
+LDFLAGS += -L$(VXLDIR)/lib -lvnl_algo -lvnl -lvcl -lnetlib
 #LDFLAGS+=-L../vxl-1.0-beta/vxl/lib/Linux2-gcc-2.95 -L../vxl-1.0-beta/v3p/lib/Linux2-gcc-2.95 -Wl,-rpath,../vxl-1.0-beta/v3p/lib/Linux2-gcc-2.95:../vxl-1.0-beta/vxl/lib/Linux2-gcc-2.95 -lvnl-algo -lnetlib -lvnl -lvcl -lstdc++ -ldl -rdynamic -lm -lc
 endif
 
