@@ -8,7 +8,7 @@
 class DenseMatAccess : public MatrixAccess<realtype>
 {
 public:
-  DenseMatAccess(DenseMat &m) : d(m), data(m->data) {}
+  DenseMatAccess(DlsMat &m) : d(m), data(m->data) {}
   virtual ~DenseMatAccess() {}
   unsigned int rows(void) const
   { return d->M; } 
@@ -20,7 +20,7 @@ public:
   { return DENSE_ELEM(d,r,c);
   }
 private:
-  DenseMat &d;
+  DlsMat &d;
   realtype **data;
 };
 
