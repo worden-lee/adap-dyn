@@ -8,7 +8,7 @@
 class DenseMatAccess : public MatrixAccess<realtype>
 {
 public:
-  DenseMatAccess(DlsMat &m) : d(m), data(m->data) {}
+  DenseMatAccess(DlsMat &m) : d(m) {}
   virtual ~DenseMatAccess() {}
   unsigned int rows(void) const
   { return d->M; } 
@@ -21,7 +21,6 @@ public:
   }
 private:
   DlsMat &d;
-  realtype **data;
 };
 
 // exception that gets raised when the integration routine needs to
