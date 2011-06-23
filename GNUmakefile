@@ -33,18 +33,21 @@ LOCALCFLAGS+=-DCVODE
 LOCALCFLAGS+=-I/usr/include/cvode -I/usr/include/nvector -I/usr/include/sundials
 endif
 
+EXECSTREAMDIR ?= ../libexecstream
+
 SOURCES = main.cpp Community.cpp Communicator.cpp Parameters.cpp \
 	OutputController.cpp NodeOutputController.cpp Simulation.cpp \
-	Integrator.cpp NRIntegrator.cpp CVIntegrator.cpp Iterator.cpp \
+	Integrator.cpp NRIntegrator.cpp Iterator.cpp \
 	Indexing.cpp util.cpp genrand2.cpp rand.cpp Algebra.cpp \
 	Displays/PopulationDisplay.cpp Displays/DotDisplay.cpp \
 	Displays/EvolutionaryTreeDisplay.cpp \
 	Displays/ConstrainedPhenoDisplay2d.cpp \
 	Displays/TimeSeriesDisplay.cpp
-OBJS = $(SOURCES:.cpp=.o) CVodeWithStoppingCondition.o \
-	../libexecstream/exec-stream.o
-#OBJS = $(SOURCES:.cpp=.o) l_cvode.o ../libexecstream/exec-stream.o
-#OBJS = $(SOURCES:.cpp=.o) ../libexecstream/exec-stream.o
+#CVIntegrator.cpp 
+OBJS = $(SOURCES:.cpp=.o) $(EXECSTREAMDIR)/exec-stream.o
+#CVodeWithStoppingCondition.o 
+#l_cvode.o
+
 THIS = GNUmakefile
 
 ARCHIVE = libadap-dyn.a

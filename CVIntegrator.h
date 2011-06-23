@@ -4,13 +4,12 @@
 #include "Integrator.h"
 #include "Matrix.h"
 
-//#include "CVODE.h"
   // This project assumes that SUNDIALS is installed with
   //  realtype == double!  It's true currently, but beware.
-#include "sundials_types.h"
-#include "cvode.h"
-#include "nvector_serial.h"
-#include "cvode_dense.h"
+#include "sundials/sundials_types.h"
+#include "cvode/cvode.h"
+#include "nvector/nvector_serial.h"
+#include "cvode/cvode_dense.h"
 
 #include <errno.h>
 using namespace std;
