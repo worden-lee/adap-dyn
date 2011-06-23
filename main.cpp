@@ -27,7 +27,7 @@ void handleArgs(int argc, char **argv)
       string line(arg,2,string::npos);
       string::size_type eq = line.find('=');
       if (eq != string::npos)
-	line[eq] = ' ';
+        line[eq] = ' ';
       //cout << line << endl;
       parameters.parseLine(line);
     }

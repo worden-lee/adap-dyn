@@ -2,13 +2,21 @@
 #include <fstream>
 #include <list>
 #include <functional>
+#include <sys/stat.h>
 
 Parameters::Parameters(Parameters*upstream)  : inheritFrom(upstream)
 {
   if (!inheritFrom)
-  {
-    setdefaultSettingsFile("settings/default.settings");
-    loadDefaults();
+  { // if settings/default.settings is found, use it.
+    // if someone invokes the program from a different directory, they
+    // have to provide the settings using -f.
+    const char *def_filename = "settings/default.settings";
+    struct stat statbuf;
+    int status = stat(def_filename, &statbuf);
+    if (status == 0)
+    { setdefaultSettingsFile(def_filename);
+      loadDefaults();
+    }
   }  
   // finishConstruct(); 
 }
