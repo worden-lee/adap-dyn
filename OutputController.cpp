@@ -138,6 +138,7 @@ void SiteOutputController::log(const char*fmt, ...)
   va_start(va,fmt);
   logTag();
   logRawV(fmt,va);
+  va_end(va);
 }
 
 void SiteOutputController::logRaw(const char*fmt, ...)
@@ -145,6 +146,7 @@ void SiteOutputController::logRaw(const char*fmt, ...)
   va_list va;
   va_start(va,fmt);
   logRawV(fmt,va);
+  va_end(va);
 }
 
 // to be overridden by NodeOutputController
@@ -156,11 +158,15 @@ void SiteOutputController::logRawV(const char*fmt, va_list va)
 void SiteOutputController::logWithCommunity(const char*fmt, ...)
 {
   va_list va;
-  va_start(va,fmt);
   logTag();
+  va_start(va,fmt);
   site->node->outputcontroller->logRawV(fmt,va);
+  va_end(va);
   if ( parameters.outputCommunities() )
+  { va_start(va,fmt);
     communities << vfstring(fmt,va);
+    va_end(va);
+  }
 }
 
 void SiteOutputController::recordValues(const VectorAccess<double>*x, double t)

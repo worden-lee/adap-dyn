@@ -28,20 +28,22 @@ void NodeOutputController::logWithAllCommunities(char*fmt,...)
   va_start(va,fmt);
   logTag();
   logRawV(fmt,va);
+  va_end(va);
   if ( parameters.outputCommunities() )
-  {
-    communities << vfstring(fmt,va);
+  { va_start(va,fmt);
+    const char *v = vfstring(fmt,va);
+    va_end(va);
+    communities << v;
     for(int i=0; i<((Node*)site)->nSites; i++)
-      ((Node*)site)->sites[i]->outputcontroller->communities
-	<< vfstring(fmt,va);
+      ((Node*)site)->sites[i]->outputcontroller->communities << v;
   }
 }
 
 void NodeOutputController::logRawV(const char*fmt,va_list va)
-{
-  logfile << vfstring(fmt,va);
+{ const char *v = vfstring(fmt,va);
+  logfile << v;
   if ( parameters.logToCout() )
-    cout << vfstring(fmt,va);
+    cout << v;
 }
 
 void NodeOutputController::initDir(void)
