@@ -11,13 +11,13 @@
 
 class CSVDisplay : public Display
 {
-  friend class CSVController;
+//  friend class CSVController;
 private:
   ofstream logfile;
   bool onBlankLine;
   //  string myOutfile;
 
-protected:
+public:
   CSVDisplay () {
     // included for compatibility, but a file is not open!
     // use openFile if this must be used
@@ -46,7 +46,7 @@ protected:
   }
 
   // write a whole line (i.e., header data)
-  void writeLine(const string line) {
+  CSVDisplay &writeLine(const string line) {
     if (!logfile) {
        cerr << "CSVDisplay::writeLine called, but no logfile is open!\n";
     }
@@ -55,15 +55,16 @@ protected:
     string::const_reverse_iterator lastchar = line.rbegin();
     if (*lastchar != '\n') logfile << endl;
     onBlankLine = true;
+    return *this;
   }
 
   // Write a new datum -- should do comma insertion automagically
   // this should automatically handle other numericals
-  void operator<<(const double& data) { 
+  CSVDisplay &operator<<(const double& data) { 
     if (&data == 0 || data == HUGE) {
       // HUGE: the international code for "it's broken!"
       *this << string("NA");
-      return;
+      return *this;
     }
     if (!logfile) {
       cerr << "CSVDisplay::<< called, but no logfile is open!\n";
@@ -74,9 +75,10 @@ protected:
       logfile << ",";
     }
     logfile << data;
+    return *this;
   }
 
-  void operator<<(const string data) {
+  CSVDisplay &operator<<(const string data) {
     if (!logfile) {
       cerr << "CSVDisplay::<< called, but no logfile is open!\n";
     }
@@ -86,6 +88,7 @@ protected:
       logfile << ",";
     }
     logfile << data;
+    return *this;
   }
 
   // start a new row of data
@@ -106,6 +109,7 @@ public:
   }
 };
 
+#if 0 // need some work to make this file compatible in climate/
 //template<class CSVDisplay>
 class CSVController : public DisplayController<CSVDisplay>
 {
@@ -347,3 +351,4 @@ public:
       }
   }
 };
+#endif
