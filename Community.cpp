@@ -58,6 +58,14 @@ void Community::siteIs(Site *s)
 Indexing& Community::variableIndexing()
 { return site->integrator->variableIndexing(); }
 
+bool Community::allDead(void)
+{ if (speciesCount() == 0)
+  { site->node->outputcontroller->log("No more species\n");
+    return true;
+  }
+  return false;
+}
+
 // given x values at time t, provide the derivatives
 void Community::calcDerivatives(double t, const VectorAccess<double>*x,
 				VectorAccess<double>*dxdt)

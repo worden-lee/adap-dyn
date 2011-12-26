@@ -492,14 +492,8 @@ void CVIntegrator::integrateNonstop(double t1)
       }
       break;
     }
-    if ( site->community->speciesCount() == 0 )
-    { if (site->outputcontroller)
-      {
-	site->outputcontroller->log("No more species\n");
-	site->outputcontroller->flush();      
-      }
+    if ( site->community->allDead())
       break;
-    }
 #endif
     if (site->outputcontroller)
       site->outputcontroller->flush();      

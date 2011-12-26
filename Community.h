@@ -83,11 +83,10 @@ public:
   { long nc = 0;
     for (long i = 0; i < nX; i++)
       if (isVariableAPopulation(i) && isVariableInUse(i))
-	nc++;
+        nc++;
     return nc;
   }
-  virtual bool allDead(void)
-  { return speciesCount() == 0; }
+  virtual bool allDead(void);
   virtual bool isVariableInUse(const Index &n);
   virtual bool isVariableAPopulation(const Index &n);
   virtual bool isVariableASpeciationCandidate(const Index &n)

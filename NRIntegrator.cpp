@@ -49,17 +49,15 @@ void NRIntegrator::integrateNonstop(double t1)
       integratePartially(t1);
 
       if (site->outputcontroller)
-	site->outputcontroller->flush();
+        site->outputcontroller->flush();
 #ifndef MPI
-      if ( site->community->speciesCount() == 0 )
+      if ( site->community->allDead())
       {
-	if (site->outputcontroller)
-	  site->outputcontroller->log("No more species\n");
-	break;
+        break;
       }
       if ( hadExplosion() )
       {
-	break;
+        break;
       }
 #endif
       if ( parameters.doSpeciation() && timeToSpeciate )

@@ -38,10 +38,9 @@ void Iterator::integrateNonstop(double t1)
       iterate_to(t1, eps, parameters.extinctionThreshold()/*, dtsav*/);
       
 #ifndef MPI
-      if ( site->community->speciesCount() == 0 )
+      if ( site->community->allDead() )
       {
-	site->node->outputcontroller->log("No more species\n");
-	break;
+        break;
       }
 #endif
       if ( parameters.doSpeciation() )
